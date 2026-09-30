@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Request international flight fares from Travel Nepway & Tours Pvt. Ltd. in Kathmandu, Nepal.">
+<title>Request a Flight | Travel Nepway & Tours Pvt. Ltd.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="flight-request-page">
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="Travel Nepway and Tours home"><span class="brand-logo-wrap"><img class="brand-logo" src="logo.png" alt="Travel Nepway & Tours Pvt. Ltd. logo"></span></a>
+    <nav class="main-nav" aria-label="Main navigation"><ul>
+      <li><a href="index.html" class="nav-link">Home</a></li><li><a href="flights.html" class="nav-link active">Flights</a></li><li><a href="tours.html" class="nav-link">Tours</a></li><li><a href="destinations.html" class="nav-link">Destinations</a></li><li><a href="visa.html" class="nav-link">Visa</a></li><li><a href="services.html" class="nav-link">Services</a></li><li><a href="deals.html" class="nav-link">Deals</a></li><li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul></nav>
+    <a href="flights.html" class="btn btn-header-cta"><i class="fa-solid fa-paper-plane"></i> Get a Quote</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main>
+<section class="home-hero flight-request-hero" aria-labelledby="flight-title">
+  <div class="home-hero-overlay"></div>
+  <div class="container home-hero-content">
+    <div class="hero-badge"><i class="fa-solid fa-plane"></i> Flight Request</div>
+    <h1 id="flight-title">Request your <em>best airfare.</em><br>We’ll handle the rest.</h1>
+    <p>Tell us your route and travel dates. We will check supplier fares and reply with the best available options. This is a fare request, not an instant booking.</p>
+    <form class="hero-search home-flight-search flight-request-search" id="flightRequestForm" novalidate>
+      <div class="search-field autocomplete-wrap">
+        <label for="requestFrom"><i class="fa-solid fa-plane-departure"></i> From</label>
+        <input id="requestFrom" type="text" placeholder="City or airport" autocomplete="off" required>
+        <div class="autocomplete-menu" id="requestFromSuggestions" role="listbox" hidden></div>
+      </div>
+      <div class="search-field autocomplete-wrap">
+        <label for="requestTo"><i class="fa-solid fa-plane-arrival"></i> To</label>
+        <input id="requestTo" type="text" placeholder="City or airport" autocomplete="off" required>
+        <div class="autocomplete-menu" id="requestToSuggestions" role="listbox" hidden></div>
+      </div>
+      <div class="search-field">
+        <label for="requestDeparture"><i class="fa-solid fa-calendar-days"></i> Departure</label>
+        <input id="requestDeparture" type="date" required>
+      </div>
+      <div class="search-field">
+        <label for="requestPassengers"><i class="fa-solid fa-users"></i> Passengers</label>
+        <input id="requestPassengers" type="number" min="1" max="20" value="1" required>
+      </div>
+      <button class="btn btn-search home-search-button" type="submit"><i class="fa-solid fa-envelope"></i> Request Flight</button>
+
+      <div class="flight-extra-fields">
+        <div class="form-field"><label for="requestReturn"><i class="fa-solid fa-calendar-check"></i> Return <small>(optional)</small></label><input id="requestReturn" type="date"></div>
+        <div class="form-field"><label for="requestCabin"><i class="fa-solid fa-chair"></i> Cabin</label><select id="requestCabin"><option>Economy</option><option>Premium Economy</option><option>Business</option><option>First</option></select></div>
+        <div class="form-field"><label for="requestName"><i class="fa-solid fa-user"></i> Your Name</label><input id="requestName" type="text" placeholder="Full name" required></div>
+        <div class="form-field"><label for="requestEmail"><i class="fa-solid fa-at"></i> Your Email</label><input id="requestEmail" type="email" placeholder="you@example.com" required></div>
+        <div class="form-field"><label for="requestPhone"><i class="fa-solid fa-phone"></i> Contact Number</label><input id="requestPhone" type="tel" placeholder="+977 98XXXXXXXX" autocomplete="tel" required></div>
+        <div class="form-field form-field-wide"><label for="requestNote"><i class="fa-solid fa-message"></i> Additional Request</label><textarea id="requestNote" rows="3" placeholder="Preferred airline, baggage, flexible dates, group travel, etc."></textarea></div>
+      </div>
+    </form>
+    <div class="hero-contact-links">
+      <a href="https://wa.me/9779851363710?text=Hello%20Travel%20Nepway%2C%20I%20have%20a%20flight%20query." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Direct Query on WhatsApp</a>
+      <a href="mailto:official@travelnepway.com.np"><i class="fa-solid fa-envelope"></i> official@travelnepway.com.np</a>
+      <a href="tel:+9779851363710"><i class="fa-solid fa-phone"></i> +977 9851363710</a>
+    </div>
+    <div class="form-message flight-request-message" id="flightRequestMessage" role="status" aria-live="polite"></div>
+  </div>
+</section>
+<section class="section home-contact flight-request-info">
+  <div class="container">
+    <header class="section-head"><span class="eyebrow">How it works</span><h2>Simple. Personal. Reliable.</h2><p>We check supplier options for your route and send you a quotation. Fare, baggage, seat availability and fare rules are confirmed before ticketing.</p></header>
+    <div class="contact-home-grid">
+      <div class="contact-home-info">
+        <div class="contact-info-card"><i class="fa-solid fa-envelope"></i><div><h3>Request by email</h3><p>Submit the form above and we’ll prepare your airfare options.</p></div></div>
+        <div class="contact-info-card"><i class="fa-brands fa-whatsapp"></i><div><h3>Need a quick answer?</h3><p><a href="https://wa.me/9779851363710?text=Hello%20Travel%20Nepway%2C%20I%20have%20a%20flight%20query." target="_blank" rel="noopener">Message us directly on WhatsApp.</a></p></div></div>
+        <div class="contact-info-card"><i class="fa-solid fa-location-dot"></i><div><h3>Visit our office</h3><p>Basundhara-03, Kathmandu, Nepal</p></div></div>
+      </div>
+      <div class="contact-home-form card"><div class="card-body"><h3>Important</h3><p class="form-intro">Submitting a flight request does not confirm a ticket. Our team will contact you with the available fare and booking conditions before any ticket is issued.</p><a class="btn btn-primary" href="track.html"><i class="fa-solid fa-magnifying-glass"></i> Track Your Enquiry</a></div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand"><a href="index.html" class="brand" aria-label="Travel Nepway home"><span class="brand-logo-wrap"><img class="brand-logo footer-logo" src="logo.png" alt="Travel Nepway & Tours Pvt. Ltd. logo"></span></a><p>International air tickets, holiday tours, visa assistance and practical travel support from Kathmandu.</p><div class="social"><a href="https://www.facebook.com/share/1RA5PSQPKK/" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a><a href="https://www.instagram.com/travel_nepway?stkn=MXU2am9jeDNnenJ1aQ==" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></div></div>
+    <div><h4>Travel</h4><ul><li><a href="flights.html">Flights</a></li><li><a href="tours.html">Tours & Holidays</a></li><li><a href="destinations.html">Destinations</a></li><li><a href="deals.html">Flight Deals</a></li></ul></div>
+    <div><h4>Services</h4><ul><li><a href="visa.html">Visa Assistance</a></li><li><a href="services.html">Travel Services</a></li><li><a href="track.html">Track Enquiry</a></li><li><a href="about.html">About Us</a></li></ul></div>
+    <div class="footer-contact"><h4>Contact</h4><ul class="footer-contact-list"><li><i class="fa-solid fa-location-dot"></i><span>Basundhara-03, Kathmandu, Nepal</span></li><li><i class="fa-solid fa-phone"></i><span><a href="tel:+9779851363710">+977 9851363710</a><br><a href="tel:+9779851363810">+977 9851363810</a></span></li><li><i class="fa-brands fa-whatsapp"></i><span><a href="https://wa.me/9779851363710" target="_blank" rel="noopener">WhatsApp us</a></span></li><li><i class="fa-solid fa-envelope"></i><span><a href="mailto:official@travelnepway.com.np">official@travelnepway.com.np</a></span></li></ul></div>
+    <div class="footer-action"><h4>Need help?</h4><p>Send your route or travel requirement and our team can guide you.</p><a class="btn btn-light footer-direct-btn" href="https://wa.me/9779851363710?text=Hello%20Travel%20Nepway%2C%20I%20need%20travel%20assistance." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a><a class="footer-email-link" href="mailto:official@travelnepway.com.np"><i class="fa-solid fa-envelope"></i> Email us</a></div>
+  </div>
+  <div class="footer-bottom"><div class="container"><p>&copy; <span id="year"></span> Travel Nepway & Tours Pvt. Ltd. All rights reserved.</p></div></div>
+</footer>
+<a href="https://wa.me/9779851363710?text=Hello%20Travel%20Nepway%2C%20I%20have%20a%20direct%20query." class="float-wa" aria-label="Chat on WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" type="button"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="script.js"></script>
+</body>
+</html>

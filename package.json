@@ -1,0 +1,8 @@
+{
+  "name":"travel-nepway-v4",
+  "version":"4.0.0",
+  "private":true,
+  "description":"Travel Nepway & Tours V4 website with secure server-side admin and centralized enquiry/flight storage",
+  "scripts":{"start":"node server.js","dev":"node server.js"},
+  "engines":{"node":">=18"}
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Travel Nepway & Tours Pvt. Ltd. — Flight requests, airfare deals and travel support from Kathmandu, Nepal."/><title>Flight Management Admin — Travel Nepway & Tours</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/><link rel="stylesheet" href="styles.css"/></head><body><header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="Travel Nepway and Tours home">
+      <span class="brand-logo-wrap"><img class="brand-logo" src="logo.png" alt="Travel Nepway & Tours Pvt. Ltd. logo"></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="flights.html" class="nav-link">Flights</a></li>
+        <li><a href="tours.html" class="nav-link">Tours</a></li>
+        <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+        <li><a href="visa.html" class="nav-link">Visa</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="deals.html" class="nav-link">Deals</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="flights.html" class="btn btn-header-cta"><i class="fa-solid fa-paper-plane"></i> Get a Quote</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header><section class="page-hero"><div class="container"><span class="hero-badge"><i class="fa-solid fa-lock"></i> Admin</span><h1>Flight Management</h1><p>Sign in to manage the flight inventory used by the website.</p><button class="btn btn-light" id="openAdminPageLogin"><i class="fa-solid fa-right-to-bracket"></i> Admin Login</button></div></section>
+  <section class="section section-alt admin-section" id="flight-management">
+    <div class="container">
+      <header class="section-head admin-section-head">
+        <span class="eyebrow">Admin</span>
+        <h2>Flight Management</h2>
+        <p>Add, edit, remove and manage the flight inventory shown in customer searches.</p>
+      </header>
+
+      <div class="notice notice-warning" role="alert"><strong>Demo admin — not secure for production.</strong> This page stores flight data in this browser only. Do not enter real customer data or rely on this login to protect business records. Connect server-side authentication and a shared database before launch.</div>
+      <div class="admin-toolbar">
+        <div>
+          <strong id="adminFlightCount">0 flights</strong>
+          <span class="admin-muted">stored on this device</span>
+        </div>
+        <div class="admin-toolbar-actions">
+          <button class="btn btn-outline" type="button" id="adminLogout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+          <button class="btn btn-primary" type="button" id="addFlightBtn"><i class="fa-solid fa-plus"></i> Add Flight</button>
+        </div>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Flight</th><th>Route</th><th>Date</th><th>Time</th><th>Stops</th><th>Price</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminFlightTable"></tbody>
+        </table>
+        <div class="admin-empty" id="adminEmpty" hidden>No flights found. Add your first flight.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Admin Login / Flight Editor ===== -->
+  <div class="modal" id="adminModal" hidden aria-hidden="true">
+    <div class="modal-backdrop" data-close-admin></div>
+    <div class="modal-card admin-modal-card" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+      <button class="modal-close" type="button" data-close-admin aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div id="adminLoginView">
+        <span class="eyebrow">Secure Area</span>
+        <h3 id="adminModalTitle">Admin Login</h3>
+        <p class="admin-modal-copy">Manage the flight inventory used by this website.</p>
+        <form id="adminLoginForm" class="admin-form" novalidate>
+          <label>Email / Username<input id="adminUsername" type="text" autocomplete="username" placeholder="admin" required /></label>
+          <label>Password<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter password" required /></label>
+          <div class="form-message" id="adminLoginMessage" role="status"></div>
+          <button class="btn btn-primary btn-block" type="submit"><i class="fa-solid fa-lock"></i> Login</button>
+        </form>
+        <small>Demo mode: this frontend-only login is not a secure production authentication system.</small>
+      </div>
+
+      <div id="flightEditorView" hidden>
+        <span class="eyebrow">Flight Inventory</span>
+        <h3 id="flightEditorTitle">Add Flight</h3>
+        <form id="flightEditorForm" class="admin-form" novalidate>
+          <input type="hidden" id="flightId" />
+          <div class="admin-form-grid">
+            <label>Airline<input id="flightAirline" required placeholder="Nepal Airlines" /></label>
+            <label>Flight Number<input id="flightNumber" required placeholder="RA 201" /></label>
+            <label>Departure<select id="flightFrom" required></select></label>
+            <label>Arrival<select id="flightTo" required></select></label>
+            <label>Date<input id="flightDate" type="date" required /></label>
+            <label>Departure Time<input id="flightDepTime" type="time" required /></label>
+            <label>Arrival Time<input id="flightArrTime" type="time" required /></label>
+            <label>Duration<input id="flightDuration" required placeholder="4h 20m" /></label>
+            <label>Stops<select id="flightStops"><option value="Direct">Direct</option><option value="1 Stop">1 Stop</option><option value="2 Stops">2 Stops</option></select></label>
+            <label>Cabin<select id="flightCabin"><option>Economy</option><option>Premium Economy</option><option>Business</option><option>First</option></select></label>
+            <label>Price (NPR)<input id="flightPrice" type="number" min="0" step="100" required placeholder="42500" /></label>
+            <label>Available Seats<input id="flightSeats" type="number" min="0" max="999" value="20" required /></label>
+            <label class="admin-check"><input id="flightActive" type="checkbox" checked /> Active / searchable</label>
+            <label class="admin-check"><input id="flightFeatured" type="checkbox" /> Show as featured deal</label>
+          </div>
+          <div class="form-message" id="flightEditorMessage" role="status"></div>
+          <div class="admin-modal-actions">
+            <button class="btn btn-outline" type="button" data-close-admin>Cancel</button>
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Save Flight</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="brand" aria-label="Travel Nepway home"><span class="brand-logo-wrap"><img class="brand-logo footer-logo" src="logo.png" alt="Travel Nepway & Tours Pvt. Ltd. logo"></span></a>
+      <p>International air tickets, holiday tours, visa assistance and practical travel support from Kathmandu.</p>
+      <div class="social">
+        <a href="https://www.facebook.com/share/1RA5PSQPKK/" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/travel_nepway?stkn=MXU2am9jeDNnenJ1aQ==" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+    <div><h4>Travel</h4><ul>
+      <li><a href="flights.html">Flights</a></li><li><a href="tours.html">Tours & Holidays</a></li><li><a href="destinations.html">Destinations</a></li><li><a href="deals.html">Flight Deals</a></li>
+    </ul></div>
+    <div><h4>Services</h4><ul>
+      <li><a href="visa.html">Visa Assistance</a></li><li><a href="services.html">Travel Services</a></li><li><a href="track.html">Track Enquiry</a></li><li><a href="about.html">About Us</a></li>
+    </ul></div>
+    <div class="footer-contact"><h4>Contact</h4><ul class="footer-contact-list">
+      <li><i class="fa-solid fa-location-dot"></i><span>Basundhara-03, Kathmandu, Nepal</span></li>
+      <li><i class="fa-solid fa-phone"></i><span><a href="tel:+9779851363710">+977 9851363710</a><br><a href="tel:+9779851363810">+977 9851363810</a></span></li>
+      <li><i class="fa-brands fa-whatsapp"></i><span><a href="https://wa.me/9779851363710" target="_blank" rel="noopener">WhatsApp us</a></span></li>
+      <li><i class="fa-solid fa-envelope"></i><span><a href="mailto:official@travelnepway.com.np">official@travelnepway.com.np</a></span></li>
+    </ul></div>
+    <div class="footer-action"><h4>Need help?</h4><p>Send your route or travel requirement and our team can guide you.</p><a class="btn btn-light footer-direct-btn" href="https://wa.me/9779851363710?text=Hello%20Travel%20Nepway%2C%20I%20need%20travel%20assistance." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a><a class="footer-email-link" href="mailto:official@travelnepway.com.np"><i class="fa-solid fa-envelope"></i> Email us</a></div>
+  </div>
+  <div class="footer-bottom"><div class="container"><p>&copy; <span id="year"></span> Travel Nepway & Tours Pvt. Ltd. All rights reserved.</p></div></div>
+</footer>
+<a href="https://wa.me/9779851363710?text=Hello%20Travel%20Nepway%2C%20I%20have%20a%20direct%20query." class="float-wa" aria-label="Chat on WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" type="button"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="script.js"></script>
+</body></html>
